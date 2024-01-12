@@ -5,6 +5,10 @@
 @tailwind components;
 @tailwind utilities;
 
+*{
+    background-color: #282C33;
+}
+
 @layer components {
     * {
         @apply m-0 p-0 box-border text-base outline-purple/30 duration-100;

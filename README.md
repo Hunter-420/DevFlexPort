@@ -114,7 +114,7 @@ git clone https://github.com/<your-github-username>/DevFlexPort.git
   
 6. Navigate to the project directory.
 ```
-cd Front-End-Projects
+cd DevFlexPort
 ```
 
 7. Add a reference(remote) to the original repository.
