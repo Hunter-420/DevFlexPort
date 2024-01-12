@@ -10,7 +10,7 @@ let PORT = 3000;
 server.use(express.json());
 server.use(cors(
     {
-        origin: 'https://laganiforum-backend.vercel.app',
+        origin: 'https://dev-flex-port-backend.vercel.app/',
         credentials: true,
         methods: ['GET', 'POST', 'OPTIONS']
     }
