@@ -95,6 +95,81 @@ You can refer to the following articles on **_basics of Git and Github and also 
 	<a href="https://github.com/Hunter-420/DevFlexPort/blob/main/CONTRIBUTING.md">
 		Contributing Guidelines
 	</a>
+	<h1 align="center">Creating Pull Request 🌟</h1>
+
+---
+1. Create a folder at you desired location (usually at your desktop).
+
+2. Open Git Bash Here.
+
+3. Create a Git Repository.
+   Run the command ```git init```
+
+4. Fork the [repository](https://github.com/hunter-420/DevFlexPort.git).
+
+5. Clone your forked repository of project.
+```
+git clone https://github.com/<your-github-username>/DevFlexPort.git
+```
+  
+6. Navigate to the project directory.
+```
+cd Front-End-Projects
+```
+
+7. Add a reference(remote) to the original repository.
+```
+git remote add upstream https://github.com/hunter-420/DevFlexPort.git
+```
+
+8. Check the remotes for this repository.
+```
+git remote -v
+```
+
+9. Always take a pull from the upstream repository to your main branch to keep it updated as per the main repository.
+```
+git pull upstream main
+```
+
+8. Create a new branch.
+```
+git checkout -b <your_branch_name>
+```
+
+9. Perform your desired changes to the code base.
+
+10. Check your changes
+```
+git status
+```
+```
+git diff
+```
+
+11. Stage your changes
+```
+git add . <\files_that_you made_changes>
+```
+
+12. Commit your changes.
+```
+git commit -m "<your_commit_message>"
+```
+
+13. Push the committed changes in your feature branch to your remote repository.
+```
+git push -u origin <your_branch_name>
+```
+
+14. To create a Pull Request, click on ```compare and pull requests```.
+
+15. Add an appropriate title and description to your PR explaining your changes.
+
+18. Click on ```create pull request```.
+
+Congratulations🎉, you have made a PR to the DevFlexPort. Wait for your submission to be accepted and your PR to be merged by a maintainer.
+
 </h2>
 
 ## 🔗 Links
@@ -102,11 +177,15 @@ You can refer to the following articles on **_basics of Git and Github and also 
 [![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/nischalkhanal)
 
 
+<!--
+
 <h2 align=center>⭐Stars Chart</h2>  
 
 ## Stargazers over time
 
 [![Stargazers over time](https://starchart.cc/hunter-420/DevFlexPort.svg)](https://starchart.cc/hunter-420/DevFlexPort)
+
+-->
 
 <!--
 <h2 align=center>Project Admin</h2> 
