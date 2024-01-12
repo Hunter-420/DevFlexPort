@@ -92,7 +92,7 @@ You can refer to the following articles on **_basics of Git and Github and also 
 - Add Screenshots to help us know what this Script is all about.
 
 <h2>
-	<a href="https://github.com/hunter-420/DevFlexPorts/blob/main/CONTRIBUTING.md">
+	<a href="https://github.com/Hunter-420/DevFlexPort/blob/main/CONTRIBUTING.md">
 		Contributing Guidelines
 	</a>
 </h2>
