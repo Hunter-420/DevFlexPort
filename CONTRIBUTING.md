@@ -13,7 +13,7 @@
 3. Create a Git Repository.
    Run the command ```git init```
 
-4. Fork the [repository](https://github.com/hunter-420/D.git).
+4. Fork the [repository](https://github.com/hunter-420/DevFlexPort.git).
 
 5. Clone your forked repository of project.
 ```

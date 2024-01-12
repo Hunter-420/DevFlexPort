@@ -8,13 +8,7 @@ import cors from 'cors';
 const server = express();
 let PORT = 3000;
 server.use(express.json());
-server.use(cors(
-    {
-        origin: 'https://dev-flex-port-backend.vercel.app/',
-        credentials: true,
-        methods: ['GET', 'POST', 'OPTIONS']
-    }
-));
+server.use(cors());
 server.options('*', cors());
 mongoose.connect(process.env.DB_LOCATION, {
     autoIndex: true
