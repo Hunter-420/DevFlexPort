@@ -45,7 +45,7 @@ To use this portfolio template, follow these steps:
 1. Start the development server:
 
 
-2. Open your browser and go to [http://localhost:3000](http://localhost:3000) to view your portfolio locally.
+2. Open your browser and go to [http://localhost:3000](http://localhost:5173) to view your portfolio locally.
 
 ## Project Structure
 
