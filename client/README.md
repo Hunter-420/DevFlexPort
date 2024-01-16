@@ -33,19 +33,31 @@ DevFlexPort is a React portfolio template that leverages the Vite build tool for
 To use this portfolio template, follow these steps:
 
 1. Clone the repository:
+   ```
+   git clone https://github.com/Hunter-420/DevFlexPort.git
+   ```
 
-2. Navigate to the project directory:
+3. Navigate to the project directory:
+   ```
+   cd DevFlexPort
+   ```
 
 
-3. Install dependencies:
+5. Install dependencies:
+   ```
+   npm i
+   ```
 
 
 ### Development
 
 1. Start the development server:
+   ```
+    npm run dev
+   ```
 
 
-2. Open your browser and go to [http://localhost:3000](http://localhost:5173) to view your portfolio locally.
+3. Open your browser and go to [http://localhost:5173](http://localhost:5173) to view your portfolio locally.
 
 ## Project Structure
 
