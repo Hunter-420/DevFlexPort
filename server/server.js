@@ -3,6 +3,8 @@ import mongoose from 'mongoose'
 import 'dotenv/config'
 import cors from 'cors'
 
+import authRouter from './routes/auth.js'
+
 /* EXPRESS SERVER */
 const server = express()
 
@@ -24,9 +26,7 @@ mongoose.connect(process.env.MONGO_URI, {
   })
 
 /* ROUTES */
-server.get('/', (req, res) => {
-  res.status(200).send('Hello World')
-}) 
+server.use('/auth', authRouter)
 
 /* SERVER LISTENING */
 const PORT = process.env.PORT || 3000
