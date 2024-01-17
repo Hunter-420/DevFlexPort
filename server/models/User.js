@@ -374,11 +374,6 @@ const userSchema = new Schema({
             trim: true,
             minlength: 3
         },
-        languages: {
-            type: String,
-            trim: true,
-            minlength: 3
-        },
     },
     professionalInfo: {
         education: [ educationSchema ],
