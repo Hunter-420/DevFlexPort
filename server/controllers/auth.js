@@ -2,14 +2,18 @@ import User from '../models/User.js'
 import jwt from 'jsonwebtoken'
 import bcrypt from 'bcrypt'
 
+let isSignup = false
+
 const login = async (req, res) => {
     const { username, email, password } = req.body
 
     try {
         const user = await User.findOne({ $or: [{ 'auth.username': username }, { 'auth.email': email }] })
-        
+
         if (!user) {
-            return res.status(404).json({ message: 'Login: Invaild User' })
+            isSignup = true
+            await signup(email, username, password, res)
+            return
         }
     
         const isPasswordValid = await bcrypt.compare(password, user.auth.password)
@@ -18,16 +22,16 @@ const login = async (req, res) => {
         }
     
         const token = jwt.sign({ id: user.userId, username: user.username }, process.env.JWT_SECRET, { expiresIn: '1h' })
-    
-        res.status(200).json({ message: 'Login: Login successful', token, user: { ...user.toObject(), auth: { ...user.auth, password: undefined } } })
+
+        res.status(200).json({ message: `Login: Login successful`, isSignup: isSignup, token: token, user: { ...user.toObject(), auth: { ...user.auth, password: undefined } } })
+        
+        isSignup = false
     } catch (err) {
         res.status(500).json({ message: 'Login: Server error', error: err })
     }
 }   
 
-const signup = async (req, res) => {
-    const { username, email, password } = req.body
-
+const signup = async (email, username, password, res) => {
     try {
         if (!username || !email || !password) {
             return res.status(400).json({ message: 'Signup: Please fill in all fields' })
@@ -90,13 +94,13 @@ const signup = async (req, res) => {
         })
 
         await newUser.save()
-        res.status(201).json({ message: 'Signup: User created' })
+        await login({ body: { username, email, password } }, res)
     } catch(err) {
         if (err.code === 11000) {
             return res.status(409).json({ message: 'Signup: User already exists', error: err })
         }
-        res.status(500).json({ message: 'Signup: Server error', error: err })
+        return res.status(500).json({ message: 'Signup: Server error', error: err })
     }
 }
 
-export { login, signup }
+export { login }
