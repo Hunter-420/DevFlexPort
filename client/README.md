@@ -79,7 +79,7 @@ Please review our [Code of Conduct](CODE_OF_CONDUCT.md) before contributing.
 
 This project is licensed under the [MIT License](LICENSE). Feel free to use, modify, and distribute the code for personal or commercial projects. Attribution is appreciated but not required.
 
-For more details, check out the [GitHub repository](https://github.com/Hunter-420/DevFlexPort). Happy coding!
+For more details, check out the [GitHub repository](https://github.com/Hunter-420/DevFlexPort). Happy coding! 
 
 
 
