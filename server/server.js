@@ -5,6 +5,9 @@ import cors from 'cors'
 
 import authRouter from './routes/auth.js'
 
+import swaggerUi from 'swagger-ui-express'
+import swaggerDocument from './swagger-output.json'
+
 /* EXPRESS SERVER */
 const server = express()
 
@@ -27,6 +30,7 @@ mongoose.connect(process.env.MONGO_URI, {
 
 /* ROUTES */
 server.use('/auth', authRouter)
+server.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
 
 /* SERVER LISTENING */
 const PORT = process.env.PORT || 3000
