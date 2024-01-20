@@ -1,16 +1,21 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Navbar from "./components/navbar.component";
 
-function App() {
-  const [count, setCount] = useState(0)
+const Home = () => <h1>Home Page</h1>;
+const EditorPage = () => <h1>Editor Page</h1>;
 
+const App = () => {
   return (
-    <>
-     <h1 className='title text-white text-3xl'>DevFlexPort: Open-Source Dynamic Portfolio Hub for Developers</h1>
-    </>
-  )
-}
+    <Router>
+      <Routes>
+        <Route path="/" element={<Navbar />}>
+          <Route index element={<Home />} />
+          <Route path="/editor" element={<EditorPage />} />
+        </Route>
+      </Routes>
+    </Router>
+  );
+};
 
-export default App
+export default App;
