@@ -6,7 +6,7 @@ Welcome to the DevFlexPort project! This open-source project is a React-based cl
 
 - [Overview](#overview)
 - [Features](#features)
-- [Getting Started](#getting-started)
+- [Getting Started](#getting-started) 
   - [Installation](#installation)
   - [Development](#development)
 - [Project Structure](#project-structure)
