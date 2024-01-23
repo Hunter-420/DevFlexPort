@@ -1,8 +1,8 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "COREQ API DOCUMENTATION",
-    "description": "API Documentation",
+    "title": "DevFlexPort API Documentation",
+    "description": "API Documentation of DevFlexPort",
     "version": "1.0.0"
   },
   "host": "http://localhost:3000",

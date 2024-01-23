@@ -6,7 +6,7 @@ import cors from 'cors'
 import authRouter from './routes/auth.js'
 
 import swaggerUi from 'swagger-ui-express'
-import swaggerDocument from './swagger-output.json'
+import swaggerDocument from './swagger-output.json' assert { type: 'json' }
 
 /* EXPRESS SERVER */
 const server = express()
