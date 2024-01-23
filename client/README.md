@@ -18,7 +18,7 @@ Welcome to the DevFlexPort project! This open-source project is a React-based cl
 
 DevFlexPort is a React portfolio template that leverages the Vite build tool for a fast and efficient development experience. It features a clean and responsive design, easy customization options, and supports multi-language.
 
-## Features 
+## Features  
 
 - Modern React-based portfolio template
 - Built with Vite for fast development and performance
