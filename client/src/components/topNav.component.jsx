@@ -23,7 +23,7 @@ const topNavBar = () => {
         </div>
         {/* nav bar */}
         <nav className="nav-links">
-          <Link to="/home">
+          <Link to="/">
             <p className="nav-link">
               <span>#</span>home
             </p>
