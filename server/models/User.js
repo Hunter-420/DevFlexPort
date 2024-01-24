@@ -1,36 +1,23 @@
-import mongoose from 'mongoose'
 import { Schema, model } from 'mongoose'
 
 const educationSchema = new Schema({
     college: {
         type: String,
-        trim: true,
-        minlength: 3
     },
     university: {
         type: String,
-        trim: true,
-        minlength: 3
     },
     degree: {
         type: String,
-        trim: true,
-        minlength: 3
     },
     fieldOfStudy: {
         type: String,
-        trim: true,
-        minlength: 3
     },
     grade: {
         type: String,
-        trim: true,
-        minlength: 3
     },
     activities: {
         type: String,
-        trim: true,
-        minlength: 3
     },
     startDate: {
         type: Date,
@@ -44,26 +31,18 @@ const educationSchema = new Schema({
     },
     description: {
         type: String,
-        trim: true,
-        minlength: 3
     },
 })
 
 const experienceSchema = new Schema({
     company: {
         type: String,
-        trim: true,
-        minlength: 3
     },
     title: {
         type: String,
-        trim: true,
-        minlength: 3
     },
     location: {
         type: String,
-        trim: true,
-        minlength: 3
     },
     startDate: {
         type: Date,
@@ -77,21 +56,15 @@ const experienceSchema = new Schema({
     },
     description: {
         type: String,
-        trim: true,
-        minlength: 3
     },
 })
 
 const certificationSchema = new Schema({
     title: {
         type: String,
-        trim: true,
-        minlength: 3
     },
     issuingOrganization: {
         type: String,
-        trim: true,
-        minlength: 3
     },
     issueDate: {
         type: Date,
@@ -106,25 +79,22 @@ const certificationSchema = new Schema({
     credentialID: {
         type: String,
         trim: true,
-        minlength: 3
     },
     credentialURL: {
         type: String,
         trim: true,
-        minlength: 3
+    },
+    description: {
+        type: String,
     },
 })
 
 const awardSchema = new Schema({
     title: {
         type: String,
-        trim: true,
-        minlength: 3
     },
     issuingOrganization: {
         type: String,
-        trim: true,
-        minlength: 3
     },
     issueDate: {
         type: Date,
@@ -133,62 +103,68 @@ const awardSchema = new Schema({
     },
     description: {
         type: String,
-        trim: true,
-        minlength: 3
     },
 })
 
 const publicationSchema = new Schema({
     title: {
         type: String,
-        trim: true,
-        minlength: 3
     },
     publisher: {
         type: String,
-        trim: true,
-        minlength: 3
     },
     publicationDate: {
         type: Date,
         trim: true,
         minlength: 3
     },
-    description: {
+    publicationURL: {
         type: String,
         trim: true,
-        minlength: 3
+    },
+    description: {
+        type: String,
     },
 })
 
 const projectSchema = new Schema({
     title: {
         type: String,
-        trim: true,
-        minlength: 3
     },
     link: {
         type: String,
+        trim: true,
+    },
+    startDate: {
+        type: Date,
+        trim: true,
+        minlength: 3
+    },
+    endDate: {
+        type: Date,
         trim: true,
         minlength: 3
     },
     description: {
         type: String,
-        trim: true,
-        minlength: 3
     },
 })
 
 const languageSchema = new Schema({
     name: {
         type: String,
-        trim: true,
-        minlength: 3
     },
     proficiency: {
         type: String,
-        trim: true,
-        minlength: 3
+    },
+})
+
+const skillsSchema = new Schema({
+    name: {
+        type: String,
+    },
+    proficiency: {
+        type: String,
     },
 })
 
@@ -364,7 +340,7 @@ const userSchema = new Schema({
             trim: true,
             minlength: 3
         },
-        interests: {
+        languages: {
             type: String,
             trim: true,
             minlength: 3
@@ -383,6 +359,7 @@ const userSchema = new Schema({
         publications: [ publicationSchema ],
         projects: [ projectSchema ],
         languages: [ languageSchema ],
+        skills: [ skillsSchema ],
     },
 },
 {

@@ -1,8 +1,8 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "DevFlexPort API Documentation",
-    "description": "API Documentation of DevFlexPort",
+    "title": "COREQ API DOCUMENTATION",
+    "description": "API Documentation",
     "version": "1.0.0"
   },
   "host": "http://localhost:3000",
@@ -40,6 +40,69 @@
           },
           "401": {
             "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/{userId}": {
+      "put": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "slice(7",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "length",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "auth": {
+                  "example": "any"
+                },
+                "personalInfo": {
+                  "example": "any"
+                },
+                "professionalInfo": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Not Found"
           },
           "500": {
             "description": "Internal Server Error"

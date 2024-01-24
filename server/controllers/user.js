@@ -1,100 +1,216 @@
-import User from '../models/user.js'
+import bcrypt from 'bcrypt'
+import User from '../models/User.js'
 
 const updateUser = async (req, res) => {
-        const { userId } = req.params
+    const { userId } = req.params
+    const { auth, personalInfo, professionalInfo } = req.body
   
-        try {
-          const user = await User.findById(userId).select('-auth')
-          if (!user) {
+    try {
+        const user = await User.findById(userId)
+        if (!user) {
             return res.status(404).json({ message: 'User not found' })
-          }
-      
-          if (req.body.username && req.body.username.trim() !== '') {
-            user.username = req.body.username
-          }
-          // Handle cover picture upload
-          if (req.files && req.files['coverPic']) {
-            // Assuming you store the file path in req.files['coverPic'][0].path
-            user.coverPic = req.files['coverPic'][0].path
-          }
-      
-          // Update full name if available and not empty/whitespace
-          if (req.body.fullName && req.body.fullName.trim() !== '') {
-            user.fullName = req.body.fullName
-          }
-      
-          // Update bio if available and not empty/whitespace
-          if (req.body.bio && req.body.bio.trim() !== '') {
-            user.bio = req.body.bio
-          }
-      
-          // Update batch if available and not empty/whitespace
-          if (req.body.batch && !isNaN(req.body.batch)) {
-            user.batch = Number(req.body.batch)
-          }
-    
-          // Update rollNo if available and not empty/whitespace
-          if (req.body.rollNo && !isNaN(req.body.rollNo)) {
-            user.rollNo = Number(req.body.rollNo)
-          }
-    
-          // Update location if available and not empty/whitespace
-          if (req.body.location && req.body.location.trim() !== '') {
-            user.location = req.body.location
-          }
-    
-          // Update faculty if available and not empty/whitespace
-          if (req.body.faculty && req.body.faculty.trim() !== '') {
-            user.faculty = req.body.faculty
-          }
-      
-          // Update social media links if available
-          if (req.body.socialNames) {
-            const socialNames = req.body.socialNames
-      
-            // Update github if available and not empty/whitespace
-            if (socialNames.github && socialNames.github.trim() !== '') {
-              user.socialNames.github = socialNames.github
-            }
-      
-            // Update linkedin if available and not empty/whitespace
-            if (socialNames.linkedin && socialNames.linkedin.trim() !== '') {
-              user.socialNames.linkedin = socialNames.linkedin
-            }
-      
-            // Update facebook if available and not empty/whitespace
-            if (socialNames.facebook && socialNames.facebook.trim() !== '') {
-              user.socialNames.facebook = socialNames.facebook
-            }
-      
-            // Update twitter if available and not empty/whitespace
-            if (socialNames.twitter && socialNames.twitter.trim() !== '') {
-              user.socialNames.twitter = socialNames.twitter
-            }
-      
-            // Update instagram if available and not empty/whitespace
-            if (socialNames.instagram && socialNames.instagram.trim() !== '') {
-              user.socialNames.instagram = socialNames.instagram
-            }
-          }
-      
-          // Update password if available (verified by old password)
-          if (req.body.password && req.body.oldPassword) {
-            const isOldPasswordValid = await bcrypt.compare(req.body.oldPassword, user.password)
-      
-            if (!isOldPasswordValid) {
-              return res.status(400).json({ message: 'Invalid old password' })
-            }
-      
-            const hashedPassword = await bcrypt.hash(req.body.password, 10)
-            user.password = hashedPassword
-          }
-      
-          // Save the updated user
-          await user.save()
-      
-          res.status(200).json({ message: 'Profile updated successfully' })
-        } catch (error) {
-          res.status(500).json({ message: error.message })
         }
+      
+        if (auth) {
+            const { email, username, oldPassword, newPassword } = auth
+            if (email && email.trim() !== '') {
+                user.auth.email = email
+            }
+            if (username && username.trim() !== '') {
+                user.auth.username = username
+            }
+            const isOldPasswordValid = await bcrypt.compare(oldPassword, user.auth.password)
+            if (!isOldPasswordValid) {
+                return res.status(400).json({ message: 'Invalid old password' })
+            }
+            const hashedPassword = await bcrypt.hash(newPassword, 10)
+            user.auth.password = hashedPassword
+        }
+
+        if (personalInfo) {
+            const { name, address, contact, bio, interests, hobbies } = personalInfo
+            if (name && name.trim() !== '') {
+                user.personalInfo.name = name
+            }
+            if (address) {
+                const { addressLine1, addressLine2, city, state, zipCode, country } = address
+                if (addressLine1 && addressLine1.trim() !== '') {
+                    user.personalInfo.address.addressLine1 = addressLine1
+                }
+                if (addressLine2 && addressLine2.trim() !== '') {
+                    user.personalInfo.address.addressLine2 = addressLine2
+                }
+                if (city && city.trim() !== '') {
+                    user.personalInfo.address.city = city
+                }
+                if (state && state.trim() !== '') {
+                    user.personalInfo.address.state = state
+                }
+                if (zipCode && zipCode.trim() !== '') {
+                    user.personalInfo.address.zipCode = zipCode
+                }
+                if (country && country.trim() !== '') {
+                    user.personalInfo.address.country = country
+                }
+            }
+            if (contact) {
+                const { phone, email, website, github, linkedin, twitter, facebook, instagram, youtube, tiktok, snapchat, pinterest, reddit, discord, twitch, telegram, whatsapp, signal, slack, medium } = contact
+                if (phone && phone.trim() !== '') {
+                    user.personalInfo.contact.phone = phone
+                }
+                if (email && email.trim() !== '') {
+                    user.personalInfo.contact.email = email
+                }
+                if (website && website.trim() !== '') {
+                    user.personalInfo.contact.website = website
+                }
+                if (github && github.trim() !== '') {
+                    user.personalInfo.contact.github = github
+                }
+                if (linkedin && linkedin.trim() !== '') {
+                    user.personalInfo.contact.linkedin = linkedin
+                }
+                if (twitter && twitter.trim() !== '') {
+                    user.personalInfo.contact.twitter = twitter
+                }
+                if (facebook && facebook.trim() !== '') {
+                    user.personalInfo.contact.facebook = facebook
+                }
+                if (instagram && instagram.trim() !== '') {
+                    user.personalInfo.contact.instagram = instagram
+                }
+                if (youtube && youtube.trim() !== '') {
+                    user.personalInfo.contact.youtube = youtube
+                }
+                if (tiktok && tiktok.trim() !== '') {
+                    user.personalInfo.contact.tiktok = tiktok
+                }
+                if (snapchat && snapchat.trim() !== '') {
+                    user.personalInfo.contact.snapchat = snapchat
+                }
+                if (pinterest && pinterest.trim() !== '') {
+                    user.personalInfo.contact.pinterest = pinterest
+                }
+                if (reddit && reddit.trim() !== '') {
+                    user.personalInfo.contact.reddit = reddit
+                }
+                if (discord && discord.trim() !== '') {
+                    user.personalInfo.contact.discord = discord
+                }
+                if (twitch && twitch.trim() !== '') {
+                    user.personalInfo.contact.twitch = twitch
+                }
+                if (telegram && telegram.trim() !== '') {
+                    user.personalInfo.contact.telegram = telegram
+                }
+                if (whatsapp && whatsapp.trim() !== '') {
+                    user.personalInfo.contact.whatsapp = whatsapp
+                }
+                if (signal && signal.trim() !== '') {
+                    user.personalInfo.contact.signal = signal
+                }
+                if (slack && slack.trim() !== '') {
+                    user.personalInfo.contact.slack = slack
+                }
+                if (medium && medium.trim() !== '') {
+                    user.personalInfo.contact.medium = medium
+                }
+            }
+            if (bio && bio.trim() !== '') {
+                user.personalInfo.bio = bio
+            }
+            if (interests && interests.trim() !== '') {
+                user.personalInfo.interests = interests
+            }
+            if (hobbies && hobbies.trim() !== '') {
+                user.personalInfo.hobbies = hobbies
+            }
+        }
+
+        if (professionalInfo) {
+            const { education, experience, certifications, awards, publications, projects, languages, skills } = professionalInfo
+        
+            if (education && education.length > 0) {
+                user.professionalInfo.education = education.map(edu => ({
+                    college: edu.college,
+                    university: edu.university,
+                    degree: edu.degree,
+                    fieldOfStudy: edu.fieldOfStudy,
+                    grade: edu.grade,
+                    activities: edu.activities,
+                    startDate: edu.startDate,
+                    endDate: edu.endDate,
+                    description: edu.description,
+                }))
+            }
+            if (experience && experience.length > 0) {
+                user.professionalInfo.experience = experience.map(exp => ({
+                    company: exp.company,
+                    title: exp.title,
+                    location: exp.location,
+                    startDate: exp.startDate,
+                    endDate: exp.endDate,
+                    description: exp.description,
+                }))
+            }
+            if (certifications && certifications.length > 0) {
+                user.professionalInfo.certifications = certifications.map(cert => ({
+                    name: cert.name,
+                    issuingOrganization: cert.issuingOrganization,
+                    issueDate: cert.issueDate,
+                    expirationDate: cert.expirationDate,
+                    credentialID: cert.credentialID,
+                    credentialURL: cert.credentialURL,
+                    description: cert.description,
+                }))
+            }
+            if (awards && awards.length > 0) {
+                user.professionalInfo.awards = awards.map(award => ({
+                    title: award.title,
+                    issuingOrganization: award.issuingOrganization,
+                    issueDate: award.issueDate,
+                    description: award.description,
+                }))
+            }
+            if (publications && publications.length > 0) {
+                user.professionalInfo.publications = publications.map(pub => ({
+                    title: pub.title,
+                    publisher: pub.publisher,
+                    publicationDate: pub.publicationDate,
+                    publicationURL: pub.publicationURL,
+                    description: pub.description,
+                }))
+            }
+            if (projects && projects.length > 0) {
+                user.professionalInfo.projects = projects.map(proj => ({
+                    name: proj.name,
+                    link: proj.link,
+                    startDate: proj.startDate,
+                    endDate: proj.endDate,
+                    description: proj.description,
+                }))
+            }
+            if (languages && languages.length > 0) {
+                user.professionalInfo.languages = languages.map(lang => ({
+                    name: lang.name,
+                    proficiency: lang.proficiency,
+                }))
+            }
+            if (skills && skills.length > 0) {
+                user.professionalInfo.skills = skills.map(skill => ({
+                    name: skill.name,
+                    proficiency: skill.proficiency,
+                }))
+            }
+        }
+        
+        await user.save()
+        res.status(200).json({ message: 'User Profile updated successfully' })
+    } catch (error) {
+        res.status(500).json({ message: error.message })
+    }
+}
+
+export {
+    updateUser
 }

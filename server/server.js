@@ -4,6 +4,7 @@ import 'dotenv/config'
 import cors from 'cors'
 
 import authRouter from './routes/auth.js'
+import userRouter from './routes/user.js'
 
 import swaggerUi from 'swagger-ui-express'
 import swaggerDocument from './swagger-output.json' assert { type: 'json' }
@@ -30,6 +31,7 @@ mongoose.connect(process.env.MONGO_URI, {
 
 /* ROUTES */
 server.use('/auth', authRouter)
+server.use('/user', userRouter)
 server.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
 
 /* SERVER LISTENING */

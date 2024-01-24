@@ -13,6 +13,7 @@ const doc = {
 const outputFile = './swagger-output.json'
 const routes = [
     './routes/auth.js',
+    './routes/user.js',
 ]
 
 swagger(outputFile, routes, doc)
