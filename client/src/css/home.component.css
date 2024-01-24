@@ -1,13 +1,13 @@
 .homeContent {
-  height: 423px;
+  height: auto;
   margin: auto;
   padding-top: 120px;
   width: 100%; /* Use full width */
   max-width: 1024px; /* Limit to a maximum width if needed */
 }
 .mainText {
-  width: 537px;
-  height: 84px;
+  width: auto;
+  height: auto;
   left: 0px;
   top: 0px;
 
@@ -33,7 +33,7 @@
   /* He crafts responsive websites where technologies meet creativity */
 
   margin-top: 36px;
-  width: 463px;
+  width: auto;
   height: 50px;
   left: 0px;
   top: 116px;
