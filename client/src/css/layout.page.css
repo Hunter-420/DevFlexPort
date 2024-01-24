@@ -1,0 +1,7 @@
+.layoutMainContent {
+    height: auto;
+    margin: auto;
+    padding-top: auto;
+    width: 100%; /* Use full width */
+    max-width: 1024px; /* Limit to a maximum width if needed */
+  }

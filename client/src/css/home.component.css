@@ -1,0 +1,111 @@
+.homeContent {
+  height: auto;
+  margin: auto;
+  padding-top: 120px;
+  width: 100%; /* Use full width */
+  max-width: 1024px; /* Limit to a maximum width if needed */
+}
+.mainText {
+  width: auto;
+  height: auto;
+  left: 0px;
+  top: 0px;
+
+  font-family: "Fira Code";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 42px;
+
+  /* white */
+  color: #ffffff;
+}
+
+.mainText span {
+  color: var(--primary, #c778dd);
+  font-family: "Fira Code";
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+.subText {
+  /* He crafts responsive websites where technologies meet creativity */
+
+  margin-top: 36px;
+  width: auto;
+  height: 50px;
+  left: 0px;
+  top: 116px;
+
+  font-family: "Fira Code";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 25px;
+  /* or 156% */
+
+  /* gray */
+  color: #abb2bf;
+}
+
+.contactMe {
+  border: 1px solid var(--primary, #c778dd);
+  width: fit-content;
+  height: fit-content;
+  margin-top: 32px;
+}
+.contactMe button {
+  color: var(--white, #fff);
+  font-family: "Fira Code";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+
+  display: inline-flex;
+  padding: 8px 16px;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.currentlyWorking {
+  height: fit-content;
+  margin-top: 159px;
+  border: 1px solid var(--gray, #abb2bf);
+  width: fit-content;
+}
+
+.currentlyWorking span {
+  color: var(--gray, #abb2bf);
+  font-family: "Fira Code";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  padding: 8px;
+}
+
+.currentlyWorking span .port {
+  color: var(--white, #fff);
+  font-family: "Fira Code";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+.rectangle {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  border: 1px solid var(--primary, #c778dd);
+  background: var(--primary, #c778dd);
+  margin: 9px;
+  margin-right: 0px;
+}
+
+.myImage {
+  width: 469px;
+  height: 386px;
+  flex-shrink: 0;
+}
