@@ -1,7 +1,33 @@
 .layoutMainContent {
-    height: auto;
-    margin: auto;
-    padding-top: auto;
-    width: 100%; /* Use full width */
-    max-width: 1024px; /* Limit to a maximum width if needed */
+  margin: auto;
+  width: 100%;
+  max-width: 1024px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding: 20px; /* Add some padding for better readability on smaller screens */
+}
+
+.mainContent {
+  flex: 1;
+}
+
+/* Media query for smaller screens */
+@media only screen and (max-width: 768px) {
+  .layoutMainContent {
+      padding: 10px; /* Adjust padding for smaller screens */
   }
+
+  /* Add more responsive styles as needed */
+}
+
+/* Media query for even smaller screens */
+@media only screen and (max-width: 480px) {
+  .layoutMainContent {
+      padding: 5px; /* Further adjust padding for very small screens */
+  }
+
+  /* Add more responsive styles as needed */
+}
+
+/* Add more media queries and responsive styles for different screen sizes */
