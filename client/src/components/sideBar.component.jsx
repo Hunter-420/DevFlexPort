@@ -6,7 +6,7 @@ const SideBar = () => {
 
           <div className="sideBar">
             {/* side bar line */}
-            <svg
+            <svg className='line'
               width="2"
               height="191"
               viewBox="0 0 2 191"

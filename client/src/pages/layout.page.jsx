@@ -16,7 +16,7 @@ const Layout = ({ Page_Name }) => {
             <Page_Name />
           </div>
           <div className="mt-20">
-            <Footer />
+            {/* <Footer /> */}
           </div>
         </div>
       </div>

@@ -9,23 +9,23 @@ const Home = () => {
     <>
       {/* main components */}
       <div className="home" id="home">
-        <HomeCmponent />
+        {/* <HomeCmponent /> */}
       </div>
 
       <div className="projects mt-20" id="projects">
-      <CompleteProject/>
+      {/* <CompleteProject/> */}
       </div>
 
       <div className="skills mt-20" id="skills">
-        <Skills />
+        {/* <Skills /> */}
       </div>
 
       <div className="about-me mt-20" id="about-me">
-        <AboutMeComponent />
+        {/* <AboutMeComponent /> */}
       </div>
 
       <div className="contact-me mt-20" id="contact-me">
-        <ContactMe />
+        {/* <ContactMe /> */}
       </div>
     </>
   );
