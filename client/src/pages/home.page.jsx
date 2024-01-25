@@ -1,4 +1,8 @@
 import HomeCmponent from "../components/home.component";
+import CompleteProject from "../components/completeProjects.component";
+import Skills from "../components/skills.component";
+import AboutMeComponent from "../components/aboutMe.component";
+import ContactMe from "../components/contacts.component";
 
 const Home = () => {
   return (
@@ -8,15 +12,21 @@ const Home = () => {
         <HomeCmponent />
       </div>
 
-      <div className="projects" id="projects">
-      <h1 className="text-white text-4xl m-auto">Projects</h1>
+      <div className="projects mt-20" id="projects">
+      <CompleteProject/>
       </div>
 
-      <div className="skills" id="skills"></div>
+      <div className="skills mt-20" id="skills">
+        <Skills />
+      </div>
 
-      <div className="about-me" id="about-me"></div>
+      <div className="about-me mt-20" id="about-me">
+        <AboutMeComponent />
+      </div>
 
-      <div className="contact-me" id="contact-me"></div>
+      <div className="contact-me mt-20" id="contact-me">
+        <ContactMe />
+      </div>
     </>
   );
 };

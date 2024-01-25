@@ -41,8 +41,8 @@ const topNavBar = () => {
             </p>
           </Link>
 
-          <Link to="/contacts" >
-            <p className="nav-link" >
+          <Link to="/contacts">
+            <p className="nav-link">
               <span>#</span>contacts
             </p>
           </Link>
