@@ -6,6 +6,10 @@ const updateUser = async (req, res) => {
     const { auth, personalInfo, professionalInfo } = req.body
   
     try {
+        if (req.id !== userId) {
+            return res.status(401).json({ message: 'Unauthorized: You are not authorized to update this user' })
+        }
+
         const user = await User.findById(userId)
         if (!user) {
             return res.status(404).json({ message: 'User not found' })
@@ -215,6 +219,10 @@ const deleteUser = async (req, res) => {
     const { userId } = req.params
 
     try {
+        if (req.id !== userId) {
+            return res.status(401).json({ message: 'Unauthorized: You are not authorized to delete this user' })
+        }
+        
         await User.findByIdAndDelete(userId)
         res.status(200).json({ message: 'User deleted successfully' })
     } catch (err) {

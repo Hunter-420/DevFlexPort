@@ -21,7 +21,7 @@ const login = async (req, res) => {
             return res.status(401).json({ message: 'Login: Invalid password' })
         }
     
-        const token = jwt.sign({ id: user.userId, username: user.username }, process.env.JWT_SECRET, { expiresIn: '1h' })
+        const token = jwt.sign({ id: user._id, username: user.auth.username }, process.env.JWT_SECRET, { expiresIn: '1h' })
 
         res.status(200).json({ message: `Login: Login successful`, isSignup: isSignup, token: token, user: { ...user.toObject(), auth: { ...user.auth, password: undefined } } })
         
