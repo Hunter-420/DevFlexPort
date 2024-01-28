@@ -14,10 +14,15 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
+    - name: Get previous commit hash
+      run: |
+        export PREVIOUS_COMMIT=$(git rev-list -n 1 ${{ github.sha }}^)
+        echo "::set-env name=PREVIOUS_COMMIT::$PREVIOUS_COMMIT"
+
     - name: Check for Whitespace Changes
       run: |
         # Exit with an error if any whitespace changes are detected
-        if git diff --check ${{ github.event.before }} ${{ github.sha }}; then
+        if git diff --check $PREVIOUS_COMMIT ${{ github.sha }}; then
           echo "No whitespace changes detected."
         else
           echo "Error: Whitespace changes detected in the commit. Please remove them and try again."
