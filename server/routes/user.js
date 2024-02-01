@@ -1,6 +1,7 @@
 import express from 'express'
 import { verifyToken } from '../middlewares/auth.js'
 import { getUserDetails, updateUser, deleteUser } from '../controllers/user.js'
+import { rateLimiter } from '../middlewares/rateLimiter.js'
 
 const router = express.Router()
 
@@ -8,12 +9,12 @@ router
     /* CREATE */
 
     /* READ */
-    .get('/:userId', getUserDetails)
+    .get('/:userId', rateLimiter, getUserDetails)
 
     /* UPDATE */
-    .put('/:userId', verifyToken, updateUser)
+    .put('/:userId', rateLimiter, verifyToken, updateUser)
 
     /* DELETE */
-    .delete('/:userId', verifyToken, deleteUser)
+    .delete('/:userId', rateLimiter, verifyToken, deleteUser)
 
 export default router
