@@ -1,11 +1,13 @@
 .layoutMainContent {
   margin: auto;
   width: 100%;
-  max-width: 1024px;
+  /* max-width: 1024px; */
+
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  padding: 20px; /* Add some padding for better readability on smaller screens */
+  padding-top: 20px;
+  padding-left: 100px; /* Add some padding for better readability on smaller screens */
 }
 
 .mainContent {

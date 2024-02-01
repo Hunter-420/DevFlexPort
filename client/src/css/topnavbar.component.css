@@ -3,8 +3,6 @@
 
 /* navbar.css */
 
-
-
 .navBar {
   margin: auto;
   font-family: "Fira Code", sans-serif;
@@ -16,7 +14,8 @@
   position: absolute;
   width: 100%;
   /* Use full width */
-  max-width: 1024px;
+  padding-left: 120px;
+  padding-right: 120px;
   /* Limit to a maximum width if needed */
   left: 50%;
   transform: translateX(-50%);
@@ -32,7 +31,6 @@
   line-height: 21px;
   color: #ffffff;
   z-index: 1001;
-
 }
 
 .nav-links {
@@ -61,14 +59,11 @@
   color: #ffffff;
 }
 
-
-
 .language-switcher {
   display: flex;
   align-items: center;
   gap: 4px;
 }
-
 
 .nav-menu {
   margin-left: 1rem;
@@ -99,7 +94,6 @@
   z-index: 1000;
 }
 
-
 .gpt3__navbar-menu_container p {
   margin: 1rem 0;
 }
@@ -116,7 +110,6 @@
 }
 
 @media screen and (max-width: 500px) {
-
   .navBar {
     padding: 32px 36px 8px 26px;
     gap: 10px;
@@ -148,5 +141,4 @@
     gap: 20px;
     margin: 8rem 0 0 2.7rem;
   }
-
 }
