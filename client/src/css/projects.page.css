@@ -1,0 +1,80 @@
+.project_slash {
+  /* / */
+
+  width: 20px;
+  height: 42px;
+
+  font-family: "Fira Code";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 42px;
+  /* identical to box height */
+
+  /* primary */
+  color: #c778dd;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+.project_text {
+  /* projects */
+
+  width: 154px;
+  height: 42px;
+
+  font-family: "Fira Code";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 42px;
+  /* identical to box height */
+
+  color: #ffffff;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
+
+.project_subtitle {
+  /* List of my projects */
+
+  position: absolute;
+  width: 183px;
+  height: 21px;
+  top: 170px;
+
+  font-family: "Fira Code";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 21px;
+  /* identical to box height */
+
+  color: #ffffff;
+}
+
+.project_type {
+  /* small-projects */
+
+  height: 42px;
+
+  font-family: "Fira Code";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 32px;
+  line-height: 42px;
+  /* identical to box height */
+
+  /* white */
+  color: #ffffff;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
