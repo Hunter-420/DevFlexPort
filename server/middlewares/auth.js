@@ -16,7 +16,7 @@ const verifyToken = async (req, res, next) => {
         req.user = verified
 
         const { id, username } = verified
-        req.id = username
+        req.id = id
         req.username = username
 
         next()
