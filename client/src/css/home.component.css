@@ -1,10 +1,14 @@
 .homeContent {
+  /* flex-flow: row wrap; */
   height: auto;
   margin: auto;
   padding-top: 120px;
-  width: 100%; /* Use full width */
-  max-width: 1024px; /* Limit to a maximum width if needed */
+  width: 100%;
+  /* Use full width */
+  max-width: 1024px;
+  /* Limit to a maximum width if needed */
 }
+
 .mainText {
   width: auto;
   height: auto;
@@ -29,6 +33,7 @@
   font-weight: 600;
   line-height: normal;
 }
+
 .subText {
   /* He crafts responsive websites where technologies meet creativity */
 
@@ -55,6 +60,7 @@
   height: fit-content;
   margin-top: 32px;
 }
+
 .contactMe button {
   color: var(--white, #fff);
   font-family: "Fira Code";
@@ -94,6 +100,7 @@
   font-weight: 600;
   line-height: normal;
 }
+
 .rectangle {
   width: 16px;
   height: 16px;
@@ -109,3 +116,34 @@
   height: 386px;
   flex-shrink: 0;
 }
+
+
+@media screen and (max-width: 1020px) {
+  .homeContent {
+    display: flex;
+    flex-direction: column;
+    padding: 120px 150px 0px 94px;
+  }
+
+  .currentlyWorking {
+    margin-top: 2rem;
+  }
+
+}
+
+
+@media screen and (max-width: 650px) {
+
+  .homeContent {
+    padding: 8rem 2rem 0;
+  }
+
+  .myImage {
+    width: 307.915px;
+    height: 260.077px;
+    flex-shrink: 0;
+    margin-top: 2rem;
+  }
+}
+
+@media screen and (max-width: 490px) {}

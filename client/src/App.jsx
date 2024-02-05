@@ -7,6 +7,7 @@ import Projects from "./pages/projects.page";
 import Contacts from "./pages/contacts.page";
 import AboutMe from "./pages/aboutMe.page";
 import Layout from "./pages/layout.page";
+// import './App.css';
 
 
 

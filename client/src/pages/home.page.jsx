@@ -9,7 +9,7 @@ const Home = () => {
     <>
       {/* main components */}
       <div className="home" id="home">
-        {/* <HomeCmponent /> */}
+        <HomeCmponent />
       </div>
 
       <div className="projects mt-20" id="projects">

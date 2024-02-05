@@ -65,26 +65,26 @@ const topNavBar = () => {
             toggleMenu && (
               <div className="menu-links">
 
-                <Link to="/">
-                  <p className="nav-link">
+                <Link to="/" >
+                  <p className="nav-link" onClick={() => setToggleMenu(false)} >
                     <span>#</span>home
                   </p>
                 </Link>
 
                 <Link to="/projects">
-                  <p className="nav-link">
+                  <p className="nav-link" onClick={() => setToggleMenu(false)}>
                     <span>#</span>work
                   </p>
                 </Link>
 
                 <Link to="/aboutme">
-                  <p className="nav-link">
+                  <p className="nav-link" onClick={() => setToggleMenu(false)}>
                     <span>#</span>about-me
                   </p>
                 </Link>
 
                 <Link to="/contacts">
-                  <p className="nav-link">
+                  <p className="nav-link" onClick={() => setToggleMenu(false)}>
                     <span>#</span>contacts
                   </p>
                 </Link>
