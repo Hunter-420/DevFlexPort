@@ -3,6 +3,8 @@ import mongoose from 'mongoose'
 import 'dotenv/config'
 import cors from 'cors'
 
+import { rateLimiter } from './middlewares/rateLimiter.js'
+
 import authRouter from './routes/auth.js'
 import userRouter from './routes/user.js'
 
@@ -28,6 +30,9 @@ mongoose.connect(process.env.MONGO_URI, {
    .catch((err) => {
       console.log(err)
   })
+
+/* RATE LIMITER */
+server.use(rateLimiter)
 
 /* ROUTES */
 server.use('/auth', authRouter)
