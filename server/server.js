@@ -3,6 +3,8 @@ import mongoose from 'mongoose'
 import 'dotenv/config'
 import cors from 'cors'
 
+import rateLimit from 'express-rate-limit'
+
 import { rateLimiter } from './middlewares/rateLimiter.js'
 
 import authRouter from './routes/auth.js'
@@ -32,7 +34,15 @@ mongoose.connect(process.env.MONGO_URI, {
   })
 
 /* RATE LIMITER */
-server.use(rateLimiter)
+// server.use(rateLimiter)
+
+// rate limiter middleware temproarily
+const limiter = rateLimit({
+    windowMs: 60 * 1000,
+    max: 5, 
+    message: 'Too many requests',
+})
+server.use(limiter)
 
 /* ROUTES */
 server.use('/auth', authRouter)
