@@ -103,4 +103,40 @@ const signup = async (email, username, password, res) => {
     }
 }
 
-export { login }
+const updateAuth = async (req, res) => {
+    const { username, email, password, newPassword } = req.body
+
+    try {
+        const user = await User.findById(req.id)
+
+        if (!user) {
+            return res.status(404).json({ message: 'Update: User not found' })
+        }
+
+        if (username) {
+            user.auth.username = username
+        }
+
+        if (email) {
+            user.auth.email = email
+        }
+
+        if (password && newPassword) {
+            const isPasswordValid = await bcrypt.compare(password, user.auth.password)
+            if (!isPasswordValid) {
+                return res.status(401).json({ message: 'Update: Invalid old password' })
+            }
+
+            user.auth.password = await bcrypt.hash(newPassword, 10)
+        }
+
+        await user.save()
+
+        res.status(200).json({ message: 'Update: Auth updated', user: { ...user.toObject(), auth: { ...user.auth, password: undefined } } })
+
+    } catch (err) {
+        res.status(500).json({ message: 'Update: Server error', error: err })
+    }
+}
+
+export { login, updateAuth }

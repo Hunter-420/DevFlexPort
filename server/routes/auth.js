@@ -1,7 +1,8 @@
 import express from 'express'
 import rateLimit from 'express-rate-limit'
 
-import { login } from '../controllers/auth.js'
+import { verifyToken } from '../middlewares/auth.js'
+import { login, updateAuth } from '../controllers/auth.js'
 
 const router = express.Router()
 
@@ -12,6 +13,7 @@ router
     /* READ */
 
     /* UPDATE */
+    .patch('/update', verifyToken, rateLimit({ windowMs: 60 * 1000, max: 5 }), updateAuth)
 
     /* DELETE */
 
