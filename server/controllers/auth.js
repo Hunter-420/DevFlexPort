@@ -104,10 +104,11 @@ const signup = async (email, username, password, res) => {
 }
 
 const updateAuth = async (req, res) => {
-    const { username, email, password, newPassword } = req.body
+    const { auth } = req.body
 
     try {
-        const user = await User.findById(req.id)
+        const { username, email, password, newPassword } = auth
+        const user = await User.findById(req.id).select('auth')
 
         if (!user) {
             return res.status(404).json({ message: 'Update: User not found' })
@@ -139,4 +140,17 @@ const updateAuth = async (req, res) => {
     }
 }
 
-export { login, updateAuth }
+const deleteUser = async (req, res) => {
+    try {
+        const response = await User.findByIdAndDelete(req.id)
+        if (!response) {
+            return res.status(404).json({ message: 'User not found' })
+        }
+
+        res.status(200).json({ message: 'User deleted successfully', user: { ...response.toObject(), auth: { ...response.auth, password: undefined } } })
+    } catch (err) {
+        res.status(500).json({ message: err.message })
+    }
+}
+
+export { login, updateAuth, deleteUser }
