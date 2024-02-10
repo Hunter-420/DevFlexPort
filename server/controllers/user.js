@@ -1,4 +1,3 @@
-import bcrypt from 'bcrypt'
 import User from '../models/User.js'
 
 const getUserDetails = async (req, res) => {
@@ -16,38 +15,17 @@ const getUserDetails = async (req, res) => {
     }
 }
 
-const updateUser = async (req, res) => {
-    const { userId } = req.params
-    const { auth, personalInfo, professionalInfo } = req.body
-  
-    try {
-        if (req.id !== userId) {
-            return res.status(401).json({ message: 'Unauthorized: You are not authorized to update this user' })
-        }
+const updatePersonalInfo = async (req, res) => {
+    const { personalInfo } = req.body
 
-        const user = await User.findById(userId)
+    try {
+        const user = await User.findById(req.id).select('personalInfo')
         if (!user) {
             return res.status(404).json({ message: 'User not found' })
         }
       
-        if (auth) {
-            const { email, username, oldPassword, newPassword } = auth
-            if (email && email.trim() !== '') {
-                user.auth.email = email
-            }
-            if (username && username.trim() !== '') {
-                user.auth.username = username
-            }
-            const isOldPasswordValid = await bcrypt.compare(oldPassword, user.auth.password)
-            if (!isOldPasswordValid) {
-                return res.status(400).json({ message: 'Invalid old password' })
-            }
-            const hashedPassword = await bcrypt.hash(newPassword, 10)
-            user.auth.password = hashedPassword
-        }
-
         if (personalInfo) {
-            const { name, address, contact, bio, interests, hobbies } = personalInfo
+            const { name, address, contact, bio, skills, hobbies } = personalInfo
             if (name && name.trim() !== '') {
                 user.personalInfo.name = name
             }
@@ -138,93 +116,17 @@ const updateUser = async (req, res) => {
             if (bio && bio.trim() !== '') {
                 user.personalInfo.bio = bio
             }
-            if (interests && interests.trim() !== '') {
-                user.personalInfo.interests = interests
+            if (skills && skills.trim() !== '') {
+                user.personalInfo.skills = skills
             }
             if (hobbies && hobbies.trim() !== '') {
                 user.personalInfo.hobbies = hobbies
             }
         }
 
-        if (professionalInfo) {
-            const { education, experience, certifications, awards, publications, projects, languages, skills } = professionalInfo
-        
-            if (education && education.length > 0) {
-                user.professionalInfo.education = education.map(edu => ({
-                    college: edu.college,
-                    university: edu.university,
-                    degree: edu.degree,
-                    fieldOfStudy: edu.fieldOfStudy,
-                    grade: edu.grade,
-                    activities: edu.activities,
-                    startDate: edu.startDate,
-                    endDate: edu.endDate,
-                    description: edu.description,
-                }))
-            }
-            if (experience && experience.length > 0) {
-                user.professionalInfo.experience = experience.map(exp => ({
-                    company: exp.company,
-                    title: exp.title,
-                    location: exp.location,
-                    startDate: exp.startDate,
-                    endDate: exp.endDate,
-                    description: exp.description,
-                }))
-            }
-            if (certifications && certifications.length > 0) {
-                user.professionalInfo.certifications = certifications.map(cert => ({
-                    name: cert.name,
-                    issuingOrganization: cert.issuingOrganization,
-                    issueDate: cert.issueDate,
-                    expirationDate: cert.expirationDate,
-                    credentialID: cert.credentialID,
-                    credentialURL: cert.credentialURL,
-                    description: cert.description,
-                }))
-            }
-            if (awards && awards.length > 0) {
-                user.professionalInfo.awards = awards.map(award => ({
-                    title: award.title,
-                    issuingOrganization: award.issuingOrganization,
-                    issueDate: award.issueDate,
-                    description: award.description,
-                }))
-            }
-            if (publications && publications.length > 0) {
-                user.professionalInfo.publications = publications.map(pub => ({
-                    title: pub.title,
-                    publisher: pub.publisher,
-                    publicationDate: pub.publicationDate,
-                    publicationURL: pub.publicationURL,
-                    description: pub.description,
-                }))
-            }
-            if (projects && projects.length > 0) {
-                user.professionalInfo.projects = projects.map(proj => ({
-                    name: proj.name,
-                    link: proj.link,
-                    startDate: proj.startDate,
-                    endDate: proj.endDate,
-                    description: proj.description,
-                }))
-            }
-            if (languages && languages.length > 0) {
-                user.professionalInfo.languages = languages.map(lang => ({
-                    name: lang.name,
-                    proficiency: lang.proficiency,
-                }))
-            }
-            if (skills && skills.length > 0) {
-                user.professionalInfo.skills = skills.map(skill => ({
-                    name: skill.name,
-                    proficiency: skill.proficiency,
-                }))
-            }
-        }
-        
         await user.save()
-        res.status(200).json({ message: 'User Profile updated successfully' })
+
+        res.status(200).json({ message: 'User Personal Info updated successfully', user: { ...user.toObject()} })
     } catch (err) {
         res.status(500).json({ message: err.message })
     }
@@ -232,5 +134,5 @@ const updateUser = async (req, res) => {
 
 export {
     getUserDetails,
-    updateUser,
+    updatePersonalInfo,
 }
