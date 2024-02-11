@@ -1,24 +1,41 @@
-import express from 'express';
-import mongoose from 'mongoose';
+import express from 'express'
+import mongoose from 'mongoose'
 import 'dotenv/config'
-import cors from 'cors';
+import cors from 'cors'
 
+import authRouter from './routes/auth.js'
+import userRouter from './routes/user.js'
 
+import swaggerUi from 'swagger-ui-express'
+import swaggerDocument from './swagger-output.json' assert { type: 'json' }
 
-const server = express();
-let PORT = 3000;
-server.use(express.json());
-server.use(cors());
-server.options('*', cors());
-mongoose.connect(process.env.DB_LOCATION, {
-    autoIndex: true
-});
+/* EXPRESS SERVER */
+const server = express()
 
+/* BODY PARSER */
+server.use(express.json())
 
-server.get('/', (req, res) => {
-    res.send('Hello World')
-})
+/* CORS */
+server.use(cors())
+server.options('*', cors())
 
+/* DATABASE CONNECTION */
+mongoose.connect(process.env.MONGO_URI, {
+    autoIndex: true,
+  }).then(() => {
+      console.log('Database Connected')
+  })
+   .catch((err) => {
+      console.log(err)
+  })
+
+/* ROUTES */
+server.use('/auth', authRouter)
+server.use('/user', userRouter)
+server.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
+
+/* SERVER LISTENING */
+const PORT = process.env.PORT || 3000
 server.listen(PORT, () => {
-    console.log('Server listening on port ' + PORT);
+  console.log('Server listening on port ' + PORT)
 })
