@@ -2,7 +2,9 @@ import express from 'express'
 import rateLimit from 'express-rate-limit'
 
 import { verifyToken } from '../middlewares/auth.js'
-import { updateUser } from '../controllers/user.js'
+import { updatePersonalInfo } from '../controllers/user.js'
+
+import { updateUser }
 
 const router = express.Router()
 
@@ -12,7 +14,7 @@ router
     /* READ */
 
     /* UPDATE */
-    .put('/:userId', verifyToken, updateUser)
+    .patch('/personalInfo/', verifyToken, rateLimit({ windowMs: 60 * 1000, max: 25 }), updatePersonalInfo)
 
     /* DELETE */
 

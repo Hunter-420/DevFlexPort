@@ -12,7 +12,7 @@ router
     /* READ */
 
     /* UPDATE */
-    .patch('/update', verifyToken, updateAuth)
+    .patch('/', verifyToken, updateAuth)
 
     /* DELETE */
     .delete('/', verifyToken, deleteUser)
