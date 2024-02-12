@@ -1,5 +1,4 @@
 import express from 'express'
-import rateLimit from 'express-rate-limit'
 
 import { verifyToken } from '../middlewares/auth.js'
 import { login, updateAuth, deleteUser } from '../controllers/auth.js'
@@ -8,14 +7,14 @@ const router = express.Router()
 
 router
     /* CREATE */
-    .post('/login', rateLimit({ windowMs: 60 * 1000, max: 5 }), login)
+    .post('/login', login)
 
     /* READ */
 
     /* UPDATE */
-    .patch('/update', verifyToken, rateLimit({ windowMs: 60 * 1000, max: 5 }), updateAuth)
+    .patch('/update', verifyToken, updateAuth)
 
     /* DELETE */
-    .delete('/', verifyToken,  rateLimit({ windowMs: 60 * 1000, max: 5 }), deleteUser)
+    .delete('/', verifyToken, deleteUser)
 
 export default router
