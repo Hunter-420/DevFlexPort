@@ -3,11 +3,7 @@ import mongoose from 'mongoose'
 import 'dotenv/config'
 import cors from 'cors'
 
-import authRouter from './routes/auth.js'
-import userRouter from './routes/user.js'
-
-import swaggerUi from 'swagger-ui-express'
-import swaggerDocument from './swagger-output.json' assert { type: 'json' }
+import routes from './routes/index.js'
 
 /* EXPRESS SERVER */
 const server = express()
@@ -30,9 +26,7 @@ mongoose.connect(process.env.MONGO_URI, {
   })
 
 /* ROUTES */
-server.use('/auth', authRouter)
-server.use('/user', userRouter)
-server.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
+server.use('/api', routes)
 
 /* SERVER LISTENING */
 const PORT = process.env.PORT || 3000
