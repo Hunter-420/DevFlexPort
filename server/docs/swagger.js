@@ -4,16 +4,15 @@ const swagger = swaggerAutogen()
 
 const doc = {
     info: {
-        title: 'COREQ API DOCUMENTATION',
+        title: 'DevFlexPort API Documentation',
         description: 'API Documentation',
     },
-    host: 'http://localhost:3000',
+    host: 'http://localhost:3000/api',
 }
 
 const outputFile = './swagger-output.json'
 const routes = [
-    './routes/auth.js',
-    './routes/user.js',
+    '../routes/index.js',
 ]
 
 swagger(outputFile, routes, doc)
