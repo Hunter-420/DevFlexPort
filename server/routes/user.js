@@ -4,8 +4,6 @@ import rateLimit from 'express-rate-limit'
 import { verifyToken } from '../middlewares/auth.js'
 import { updatePersonalInfo } from '../controllers/user.js'
 
-import { updateUser }
-
 const router = express.Router()
 
 router
