@@ -1,7 +1,7 @@
 import express from 'express'
 
 import { verifyToken } from '../middlewares/auth.js'
-import { updatePersonalInfo, addProfessionalInfo,  } from '../controllers/user.js'
+import { updatePersonalInfo, addProfessionalInfo, updateProfessionalInfo } from '../controllers/user.js'
 
 const router = express.Router()
 
@@ -13,7 +13,7 @@ router
 
     /* UPDATE */
     .patch('/personalInfo/', verifyToken, updatePersonalInfo)
-    // .patch('/professionalInfo/', verifyToken, updateProfessionalInfo)
+    .patch('/professionalInfo/', verifyToken, updateProfessionalInfo)
 
     /* DELETE */
 

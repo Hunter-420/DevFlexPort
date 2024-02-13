@@ -154,12 +154,35 @@ const addProfessionalInfo = async (req, res) => {
     }
 }
 
+const updateProfessionalInfo = async (req, res) => {
+    const { field, subDocumentId, newData } = req.body
 
+    try {
+        const user = await User.findById(req.id).select('professionalInfo')
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' })
+        }
+
+        if (field && subDocumentId && newData) {
+            const subDocument = user.professionalInfo[field].find(subDoc => subDoc._id.toString() === subDocumentId.toString())
+            if (subDocument) {
+                subDocument.set(newData)
+                await user.save()
+                return res.status(200).json({ message: 'User Professional Info updated successfully', user: { ...user.toObject()} })
+            }
+            return res.status(404).json({ message: 'Sub Document not found' })
+        }
+
+        return res.status(400).json({ message: 'Field, subDocumentId and newData are required' })
+    } catch (err) {
+        res.status(500).json({ message: err.message })
+    }
+}
 
 export {
     getUserDetails,
     updatePersonalInfo,
     addProfessionalInfo,
-    // updateProfessionalInfo,
+    updateProfessionalInfo,
     // deleteProfessionalInfo,
 }
