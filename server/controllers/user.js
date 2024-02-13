@@ -179,10 +179,33 @@ const updateProfessionalInfo = async (req, res) => {
     }
 }
 
+const deleteProfessionalInfo = async (req, res) => {
+    const { field, subDocumentId } = req.body
+    
+    try {
+        const user = await User.findById(req.id).select('professionalInfo')
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' })
+        }
+
+        if (!field || !subDocumentId) {
+            return res.status(400).json({ message: 'Field and subDocumentId are required' })
+        }
+
+        user.professionalInfo[field] = user.professionalInfo[field].filter(subDoc => subDoc._id.toString() !== subDocumentId.toString())
+
+        await user.save()
+        res.status(200).json({ message: 'Professional details removed successfully' });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+}
+
 export {
     getUserDetails,
     updatePersonalInfo,
     addProfessionalInfo,
     updateProfessionalInfo,
-    // deleteProfessionalInfo,
+    deleteProfessionalInfo,
 }

@@ -1,7 +1,7 @@
 import express from 'express'
 
 import { verifyToken } from '../middlewares/auth.js'
-import { updatePersonalInfo, addProfessionalInfo, updateProfessionalInfo } from '../controllers/user.js'
+import { updatePersonalInfo, addProfessionalInfo, updateProfessionalInfo, deleteProfessionalInfo } from '../controllers/user.js'
 
 const router = express.Router()
 
@@ -16,6 +16,6 @@ router
     .patch('/professionalInfo/', verifyToken, updateProfessionalInfo)
 
     /* DELETE */
-
+    .delete('/professionalInfo/', verifyToken, deleteProfessionalInfo)
 
 export default router
