@@ -132,7 +132,34 @@ const updatePersonalInfo = async (req, res) => {
     }
 }
 
+const addProfessionalInfo = async (req, res) => {
+    const { field, data } = req.body
+
+    try {
+        const user = await User.findById(req.id).select('professionalInfo')
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' })
+        }
+
+        if (field && data) {
+            user.professionalInfo[field].push(data)
+
+            await user.save()
+            return res.status(200).json({ message: 'User Professional Info updated successfully', user: { ...user.toObject()} })
+        }
+
+        return res.status(400).json({ message: 'Field and data are required' })
+    } catch (err) {
+        res.status(500).json({ message: err.message })
+    }
+}
+
+
+
 export {
     getUserDetails,
     updatePersonalInfo,
+    addProfessionalInfo,
+    // updateProfessionalInfo,
+    // deleteProfessionalInfo,
 }
