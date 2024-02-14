@@ -132,7 +132,80 @@ const updatePersonalInfo = async (req, res) => {
     }
 }
 
+const addProfessionalInfo = async (req, res) => {
+    const { field, data } = req.body
+
+    try {
+        const user = await User.findById(req.id).select('professionalInfo')
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' })
+        }
+
+        if (field && data) {
+            user.professionalInfo[field].push(data)
+
+            await user.save()
+            return res.status(200).json({ message: 'User Professional Info updated successfully', user: { ...user.toObject()} })
+        }
+
+        return res.status(400).json({ message: 'Field and data are required' })
+    } catch (err) {
+        res.status(500).json({ message: err.message })
+    }
+}
+
+const updateProfessionalInfo = async (req, res) => {
+    const { field, subDocumentId, newData } = req.body
+
+    try {
+        const user = await User.findById(req.id).select('professionalInfo')
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' })
+        }
+
+        if (field && subDocumentId && newData) {
+            const subDocument = user.professionalInfo[field].find(subDoc => subDoc._id.toString() === subDocumentId.toString())
+            if (subDocument) {
+                subDocument.set(newData)
+                await user.save()
+                return res.status(200).json({ message: 'User Professional Info updated successfully', user: { ...user.toObject()} })
+            }
+            return res.status(404).json({ message: 'Sub Document not found' })
+        }
+
+        return res.status(400).json({ message: 'Field, subDocumentId and newData are required' })
+    } catch (err) {
+        res.status(500).json({ message: err.message })
+    }
+}
+
+const deleteProfessionalInfo = async (req, res) => {
+    const { field, subDocumentId } = req.body
+    
+    try {
+        const user = await User.findById(req.id).select('professionalInfo')
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' })
+        }
+
+        if (!field || !subDocumentId) {
+            return res.status(400).json({ message: 'Field and subDocumentId are required' })
+        }
+
+        user.professionalInfo[field] = user.professionalInfo[field].filter(subDoc => subDoc._id.toString() !== subDocumentId.toString())
+
+        await user.save()
+        res.status(200).json({ message: 'Professional details removed successfully' });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+}
+
 export {
     getUserDetails,
     updatePersonalInfo,
+    addProfessionalInfo,
+    updateProfessionalInfo,
+    deleteProfessionalInfo,
 }
